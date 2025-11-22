@@ -1,0 +1,1 @@
+sqlx::query::QueryAs<'_, sqlx::Postgres, models::user::User, sqlx::sqlx_postgres::PgArguments>
