@@ -1,15 +1,15 @@
 use sqlx::PgPool;
-use crate::handlers::tasks::NewTaskRequest;
+use crate::handlers::task::NewTaskRequest;
 
-pub async fn get_all_tasks(pool: &PgPool) -> Result<Vec<crate::models::task::Task>, sqlx::Error> {
-    let tasks = sqlx::query_as!(
-        crate::models::task::Task,
-        "SELECT * FROM core.tasks"
-    )
-    .fetch_all(pool)
-    .await?;
-    Ok(tasks)
-}
+// pub async fn get_all_tasks(pool: &PgPool) -> Result<Vec<crate::models::task::Task>, sqlx::Error> {
+//     let tasks = sqlx::query_as!(
+//         crate::models::task::Task,
+//         "SELECT * FROM core.task"
+//     )
+//     .fetch_all(pool)
+//     .await?;
+//     Ok(tasks)
+// }
 
 pub async fn create_task(pool: &PgPool, payload: NewTaskRequest) -> Result<(), sqlx::Error> {
     sqlx::query!(

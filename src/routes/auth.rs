@@ -1,5 +1,5 @@
 use axum::{Router, routing::post};
-use crate::handlers::auth::{login_handler, register_handler};
+use crate::handlers::auth_handler::{login_handler, register_handler};
 
 pub fn auth_routes() -> Router {
     Router::new()

@@ -1,5 +1,5 @@
 use sqlx::PgPool;
-use crate::handlers::auth::{RegisterRequest, LoginRequest};
+use crate::handlers::auth_handler::{RegisterRequest, LoginRequest};
 use crate::utils::password;
 use crate::utils::jwt;
 use crate::models::user::User;

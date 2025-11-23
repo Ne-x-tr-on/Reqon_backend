@@ -1,31 +1,20 @@
+use std::sync::Arc;
 use axum::{
     extract::{State, Json},
     response::IntoResponse,
     http::StatusCode,
 };
-use serde::{Deserialize, Serialize};
+// use serde::{Deserialize, Serialize};
 use sqlx::PgPool;
 use crate::services::auth_service;
+use crate::models::user::RegisterRequest;
+use crate::models::user::RegisterResponse;
+use crate::models::user::LoginResponse;
+use crate::models::user::LoginRequest;
 
-#[derive(Deserialize)]
-pub struct RegisterRequest {
-    pub full_name: String,
-    pub email: String,
-    pub password: String,
-    pub dob: String,
-    pub gender: Option<String>,
-    pub phone: Option<String>,
-    pub department_id: i16,
-    pub role_id: i16,
-}
-
-#[derive(Serialize)]
-pub struct RegisterResponse {
-    pub message: String,
-}
 
 pub async fn register_handler(
-    State(pool): State<PgPool>,
+    State(pool): State<Arc<PgPool>>,
     Json(payload): Json<RegisterRequest>
 ) -> impl IntoResponse {
     match auth_service::register_user(&pool, payload).await {
@@ -34,16 +23,6 @@ pub async fn register_handler(
     }
 }
 
-#[derive(Deserialize)]
-pub struct LoginRequest {
-    pub email: String,
-    pub password: String,
-}
-
-#[derive(Serialize)]
-pub struct LoginResponse {
-    pub token: String,
-}
 
 pub async fn login_handler(
     State(pool): State<PgPool>,

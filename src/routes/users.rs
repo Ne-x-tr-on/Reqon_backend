@@ -1,8 +1,8 @@
-use axum::{Router, routing::{get, post}};
-use crate::handlers::users::{get_users_handler, create_user_handler};
+use axum::{Router, routing::post};
+use crate::handlers::auth_handler::{login_handler, register_handler};
 
-pub fn user_routes() -> Router {
+pub fn auth_routes<StateType>() -> Router<StateType> {
     Router::new()
-        .route("/", get(get_users_handler))
-        .route("/create", post(create_user_handler))
+        .route("/register", post(register_handler))
+        .route("/login", post(login_handler))
 }

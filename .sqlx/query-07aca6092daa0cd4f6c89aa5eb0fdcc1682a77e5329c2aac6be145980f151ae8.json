@@ -1,0 +1,82 @@
+{
+  "db_name": "PostgreSQL",
+  "query": "SELECT * FROM core.users WHERE email = $1",
+  "describe": {
+    "columns": [
+      {
+        "ordinal": 0,
+        "name": "id",
+        "type_info": "Uuid"
+      },
+      {
+        "ordinal": 1,
+        "name": "full_name",
+        "type_info": "Varchar"
+      },
+      {
+        "ordinal": 2,
+        "name": "email",
+        "type_info": "Varchar"
+      },
+      {
+        "ordinal": 3,
+        "name": "password_hash",
+        "type_info": "Text"
+      },
+      {
+        "ordinal": 4,
+        "name": "phone",
+        "type_info": "Varchar"
+      },
+      {
+        "ordinal": 5,
+        "name": "employee_number",
+        "type_info": "Varchar"
+      },
+      {
+        "ordinal": 6,
+        "name": "dob",
+        "type_info": "Date"
+      },
+      {
+        "ordinal": 7,
+        "name": "gender",
+        "type_info": "Varchar"
+      },
+      {
+        "ordinal": 8,
+        "name": "department_id",
+        "type_info": "Int2"
+      },
+      {
+        "ordinal": 9,
+        "name": "role_id",
+        "type_info": "Int2"
+      },
+      {
+        "ordinal": 10,
+        "name": "created_at",
+        "type_info": "Timestamp"
+      }
+    ],
+    "parameters": {
+      "Left": [
+        "Text"
+      ]
+    },
+    "nullable": [
+      false,
+      false,
+      false,
+      false,
+      true,
+      false,
+      false,
+      true,
+      true,
+      true,
+      true
+    ]
+  },
+  "hash": "07aca6092daa0cd4f6c89aa5eb0fdcc1682a77e5329c2aac6be145980f151ae8"
+}

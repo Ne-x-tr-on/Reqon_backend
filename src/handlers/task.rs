@@ -16,16 +16,20 @@ pub struct NewTaskRequest {
     pub description: String,
 }
 
-pub async fn get_tasks_handler(State(pool): State<PgPool>) -> impl IntoResponse {
-    match task_service::get_all_tasks(&pool).await {
-        Ok(tasks) => (StatusCode::OK, Json(tasks)),
-        Err(_) => (StatusCode::INTERNAL_SERVER_ERROR, Json(vec![])),
-    }
-}
+// pub async fn get_tasks_handler(State(pool): State<PgPool>) -> impl IntoResponse {
+//     match task_service::get_all_tasks(&pool).await {
+//         Ok(tasks) => (StatusCode::OK, Json(tasks)),
+//         Err(_) => (StatusCode::INTERNAL_SERVER_ERROR, Json(vec![])),
+//     }
+// }
 
-pub async fn create_task_handler(State(pool): State<PgPool>, Json(payload): Json<NewTaskRequest>) -> impl IntoResponse {
+pub async fn create_task_handler(
+    State(pool): State<PgPool>,
+    Json(payload): Json<NewTaskRequest>
+) -> impl IntoResponse {
     match task_service::create_task(&pool, payload).await {
-        Ok(_) => (StatusCode::CREATED, Json("Task created")),
+        Ok(_) => (StatusCode::CREATED, Json("Task created".to_string())),
         Err(e) => (StatusCode::INTERNAL_SERVER_ERROR, Json(e.to_string())),
     }
 }
+
